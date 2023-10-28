@@ -13,7 +13,7 @@ public class DictionaryCommandline {
 
     public void showAllWords() {
         List<Word> wordsList = new ArrayList<>(myDictionary.Words);
-        Collections.sort(wordsList, (word1, word2) -> word1.getWord_target().compareToIgnoreCase(word2.getWord_target()));
+        wordsList.sort((word1, word2) -> word1.getWord_target().compareToIgnoreCase(word2.getWord_target()));
 
         System.out.println("No | English | Vietnamese");
         for (int i = 0; i < wordsList.size(); i++) {
