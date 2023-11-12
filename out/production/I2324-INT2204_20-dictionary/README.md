@@ -1,0 +1,3 @@
+# I2324-INT2204_20-dictionary
+Java Dictionary project.
+with goofy ahh codes...
