@@ -1,18 +1,13 @@
 package src.Dictionary;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 public class DictionaryCommandline {
     private Dictionary myDictionary;
-    private DictionaryManagement dictionaryManagement;
 
     public DictionaryCommandline(Dictionary myDictionary) {
         this.myDictionary = myDictionary;
-        this.dictionaryManagement = new DictionaryManagement(myDictionary);
     }
     public void showAllWords() {
         List<Word> wordsList = new ArrayList<>(myDictionary.Words);
@@ -68,12 +63,180 @@ public class DictionaryCommandline {
             displayWords(searchResults);
         }
     }
-    public static void main(String[] args) {
-        Dictionary eng = new Dictionary();
-        DictionaryCommandline test = new DictionaryCommandline(eng);
-        test.dictionaryBasic();
-        test.insertFromFile("dictionaries.txt");
-        test.showAllWords();
-        test.dictionarySearcher("you");
+    public static void printMenu() {
+        System.out.println("[0] Exit");
+        System.out.println("[1] Add");
+        System.out.println("[2] Remove");
+        System.out.println("[3] Update");
+        System.out.println("[4] Display");
+        System.out.println("[5] Lookup");
+        System.out.println("[6] Search");
+        System.out.println("[7] Game");
+        System.out.println("[8] Import from file");
+        System.out.println("[9] Export to file");
     }
+
+    public void insertFromCommandLine() {
+        try (Scanner scanner = new Scanner(System.in)) {
+            System.out.print("Enter the number of words to insert: ");
+
+            while (!scanner.hasNextInt()) {
+                System.out.println("Invalid input. Please enter a valid integer.");
+                scanner.next();
+            }
+
+            int numWords = scanner.nextInt();
+
+            if (numWords < 0) {
+                System.out.println("Number of words cannot be negative. Exiting...");
+                return;
+            }
+
+            scanner.nextLine();
+
+            for (int i = 0; i < numWords; i++) {
+                System.out.print("Enter a word in English: ");
+                String word_target = scanner.nextLine();
+
+                System.out.print("Enter the meaning in Vietnamese: ");
+                String word_explain = scanner.nextLine();
+
+                myDictionary.insertWord(word_target, word_explain);
+            }
+        } catch (java.util.InputMismatchException e) {
+            System.out.println("Invalid input. Please enter a valid integer.");
+        } catch (Exception e) {
+            System.out.println("An unexpected error occurred: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    public void insertWordFromCommandLine() {
+        try (Scanner scanner = new Scanner(System.in)) {
+            System.out.print("Enter a word in English: ");
+            String word_target = scanner.nextLine();
+
+            System.out.print("Enter the meaning in Vietnamese: ");
+            String word_explain = scanner.nextLine();
+
+            myDictionary.insertWord(word_target, word_explain);
+        } catch (Exception e) {
+            System.out.println("An unexpected error occurred: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    public void updateWordFromCommandLine() {
+        try (Scanner scanner = new Scanner(System.in)) {
+            System.out.print("Enter a word in English to update: ");
+            String word_target = scanner.nextLine();
+
+            System.out.print("Enter the new meaning in Vietnamese: ");
+            String word_explain = scanner.nextLine();
+
+            System.out.print("Enter the new word type (optional): ");
+            String word_type = scanner.nextLine();
+
+            myDictionary.removeWord(word_target, "", ""); // Remove the existing word
+
+            if (word_type.isEmpty()) {
+                myDictionary.insertWord(word_target, word_explain);
+            } else {
+                myDictionary.insertWord(word_target, word_explain, word_type);
+            }
+
+            System.out.println("Word updated successfully.");
+
+        } catch (Exception e) {
+            System.out.println("An unexpected error occurred: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteWordFromCommandLine() {
+        try (Scanner scanner = new Scanner(System.in)) {
+            System.out.print("Enter a word in English to delete: ");
+            String word_target = scanner.nextLine();
+
+            System.out.print("Enter the meaning in Vietnamese: ");
+            String word_explain = scanner.nextLine();
+
+            System.out.print("Enter the word type (optional): ");
+            String word_type = scanner.nextLine();
+
+            Word target_word = new Word(word_target, word_explain, word_type);
+
+            Iterator<Word> iterator = myDictionary.Words.iterator();
+            boolean found = false;
+
+            while (iterator.hasNext()) {
+                Word w = iterator.next();
+                if (target_word.equals(w)) {
+                    iterator.remove();
+                    found = true;
+                    break;
+                }
+            }
+
+            if (found) {
+                System.out.println("Word deleted successfully.");
+            } else {
+                System.out.println("Word not found in the dictionary.");
+            }
+
+        } catch (Exception e) {
+            System.out.println("An unexpected error occurred: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    public void dictionaryLookup() {
+        try (Scanner scanner = new Scanner(System.in)) {
+            System.out.print("Enter a word to lookup: ");
+            String wordToLookup = scanner.nextLine();
+
+            boolean found = false;
+
+            for (Word word : myDictionary.Words) {
+                if (word.getWord_target().equalsIgnoreCase(wordToLookup)) {
+                    System.out.println("Meaning in Vietnamese: " + word.getWord_explain());
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found) {
+                System.out.println("Word not found in the dictionary.");
+            }
+
+        } catch (Exception e) {
+            System.out.println("An unexpected error occurred: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    public void dictionaryExportToFile(String filePath) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+            for (Word word : myDictionary.Words) {
+                writer.write(word.getWord_target() + "\t" + word.getWord_explain());
+                if (word.getWord_type() != null && !word.getWord_type().isEmpty()) {
+                    writer.write("\t" + word.getWord_type());
+                }
+                writer.newLine();
+            }
+            System.out.println("Dictionary exported to file successfully.");
+
+        } catch (IOException e) {
+            System.out.println("Error exporting dictionary to file: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+//    public static void main(String[] args) {
+//        Dictionary eng = new Dictionary();
+//        DictionaryCommandline test = new DictionaryCommandline(eng);
+//        test.dictionaryBasic();
+//        test.insertFromFile("dictionaries.txt");
+//        test.showAllWords();
+//        test.dictionarySearcher("you");
+//    }
 }
