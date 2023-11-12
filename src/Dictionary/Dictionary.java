@@ -54,4 +54,16 @@ public class Dictionary {
             }
         }
     }
+
+    public HashSet<Word> searchWords(String prefix) {
+        HashSet<Word> result = new HashSet<>();
+
+        for (Word word : Words) {
+            if (word.getWord_target().startsWith(prefix)) {
+                result.add(word);
+            }
+        }
+
+        return result;
+    }
 }
