@@ -59,10 +59,13 @@ public class WordFromJSON {
     }
 
     public static void main(String[] args) {
-        String word = "mate";
+        String word = "for";
         try {
-            String JSONWord = DictionaryGetAPI.getWord(word).getValue();
-//            test2(JSONWord);
+            Pair<Integer,String> request = DictionaryGetAPI.getWord(word);
+            if(!request.getKey().equals(200)) {
+                throw new Exception("Word not found in API");
+            }
+            String JSONWord = request.getValue();
             Word w = convertWordFromJSON(JSONWord);
             System.out.println(w);
         } catch (Exception e) {
