@@ -46,7 +46,8 @@ public class Word {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Word word)) return false;
-        return Objects.equals(getWord_target(), word.getWord_target()) && Objects.equals(getWord_explain(), word.getWord_explain()) && Objects.equals(getWord_type(), word.getWord_type());
+        return Objects.equals(getWord_target(), word.getWord_target()) && Objects.equals(getWord_explain(),
+                word.getWord_explain()) && Objects.equals(getWord_type(), word.getWord_type());
     }
 
     @Override

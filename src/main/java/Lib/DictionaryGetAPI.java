@@ -1,6 +1,7 @@
 package Lib;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.reflect.TypeToken;
 import javafx.util.Pair;
 
@@ -38,20 +39,27 @@ public class DictionaryGetAPI {
 
     public static void main(String[] args) {
         String JSONword = "";
+        Integer responseCode = 0;
         try {
             /*
             If you look at the output demonstrated in "API_Demo.txt",
             the JSON string returned will be contained in square brackets "[]".
             So if you wanted to use GSON on it, just remove them.
              */
-            JSONword = getWord("united").getValue();
-            JSONword = (String) JSONword.subSequence(1, JSONword.length() - 1);
+            Pair<Integer, String> response = getWord("mate");
+            JSONword = response.getValue();
+            responseCode = response.getKey();
+
+            System.out.println(String.format(
+                    "Response code: %d%nJSON response: %s", responseCode, JSONword));
 
             // Testing out if the JSON string can be converted to hash map<string, obj>.
-            HashMap<String, Object> JSON = new Gson().fromJson(JSONword, new TypeToken<HashMap<String, Object>>() {
-            }.getType());
-            System.out.println(JSON.get("meanings"));
-            System.out.println(JSON.get("meanings").getClass());
+            //HashMap<String, Object> JSON = new Gson().fromJson(JSONword, new TypeToken<HashMap<String, Object>>() {
+            //}.getType());
+            //System.out.println(JSON.get("meanings"));
+            //System.out.println(JSON.get("meanings").getClass());
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }
