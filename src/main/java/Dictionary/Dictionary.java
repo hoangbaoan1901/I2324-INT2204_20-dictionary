@@ -1,4 +1,4 @@
-package src.Dictionary;
+package Dictionary;
 
 import java.util.HashSet;
 

@@ -1,8 +1,6 @@
-package src.Dictionary;
+package Dictionary;
 
 import java.io.*;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Scanner;
 
 public class DictionaryManagement {

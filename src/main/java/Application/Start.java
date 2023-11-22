@@ -1,7 +1,9 @@
-package src.Application;
-import src.Dictionary.*;
+package Application;
+import Dictionary.Dictionary;
+import Dictionary.DictionaryCommandline;
+import Dictionary.*;
 import java.util.Scanner;
-import static src.Dictionary.DictionaryCommandline.printMenu;
+import static Dictionary.DictionaryCommandline.printMenu;
 
 public class Start {
     public static void main(String[] args) {
