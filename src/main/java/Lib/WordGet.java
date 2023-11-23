@@ -3,13 +3,23 @@ package Lib;
 import javafx.util.Pair;
 import com.jayway.jsonpath.*;
 
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
-public class WordGen {
+import static Lib.SQLiteConnect.getSQLiteConnection;
+
+public class WordGet {
     // JSON format: Every multivalued fields will be stored in an ARRAY, even the JSON itself at first.
-    public static Word WordFromJSON(String JSONWord) {
+    public static Word WordFromAPI(String input_word) {
+        Pair<Integer, String> request = new Pair<>(null, null);
+        try {
+            request = DictionaryGetAPI.getWord(input_word);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        String JSONWord = request.getValue();
         Word result;
         String input = JSONWord.substring(1, JSONWord.length() - 1); // Remove the square brackets.
         // Get word
@@ -55,18 +65,64 @@ public class WordGen {
         return result;
     }
 
-    public static void main(String[] args) {
-        String word = "youth";
+    public static Word WordFromInstalledDatabase(String word) {
+        String path = "src/main/Dictionary.db";
+        Connection c = getSQLiteConnection(path);
+        String query = String.format("SELECT * FROM WORDS WHERE word LIKE '%s'", word);
+        HashMap<String, ArrayList<Pair<String, String>>> meanings = new HashMap<>();
+        Statement statement = null;
         try {
-            Pair<Integer,String> request = DictionaryGetAPI.getWord(word);
-            if(!request.getKey().equals(200)) {
-                throw new Exception("Word not found in API");
-            }
-            String JSONWord = request.getValue();
-            Word w = WordFromJSON(JSONWord);
-            System.out.println(w);
-        } catch (Exception e) {
-            System.out.println(e.toString());
+            statement = c.createStatement();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
         }
+        ResultSet resultSet = null;
+        try {
+            resultSet = statement.executeQuery(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+        while (true) {
+            try {
+                if (!resultSet.next()) {
+                    break;
+                } else {
+                    String wordType = resultSet.getString("wordtype");
+                    String definition = resultSet.getString("definition");
+                    definition.replaceAll("[\\t\\n\\r]+"," ");
+                    Pair<String, String> p = new Pair<>(definition, null);
+                    if (meanings.containsKey(wordType)) {
+                        meanings.get(wordType).add(p);
+                    } else {
+                        ArrayList<Pair<String, String>> arr = new ArrayList<>();
+                        arr.add(p);
+                        meanings.put(wordType, arr);
+                    }
+                    System.out.println(String.format(
+                            "word: %s%npos: %s%ndefinition: %s%n", word, wordType, definition));
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
+        }
+        return new Word(word, meanings);
+    }
+
+    public static void testAPI(String word) {
+        Word w = WordFromAPI(word);
+        System.out.println(w);
+    }
+
+    public static void testDB(String word) {
+        Word w = WordFromInstalledDatabase(word);
+        System.out.println(w);
+    }
+
+    public static void main(String[] args) {
+        String word = "position";
+        testDB(word);
     }
 }

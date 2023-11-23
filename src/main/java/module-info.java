@@ -1,11 +1,11 @@
 module Application {
     requires javafx.fxml;
     requires javafx.controls;
-    requires com.google.gson;
     requires java.net.http;
     requires java.sql;
     requires json.path;
     requires javafx.graphics;
+    requires org.xerial.sqlitejdbc;
     opens Application to javafx.graphics;
     exports Application;
     exports DictionaryApplication.Controllers;

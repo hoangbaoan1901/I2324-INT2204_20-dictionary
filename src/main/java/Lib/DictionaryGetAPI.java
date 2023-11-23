@@ -1,8 +1,5 @@
 package Lib;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.reflect.TypeToken;
 import javafx.util.Pair;
 
 import java.io.EOFException;
@@ -52,14 +49,6 @@ public class DictionaryGetAPI {
 
             System.out.println(String.format(
                     "Response code: %d%nJSON response: %s", responseCode, JSONword));
-
-            // Testing out if the JSON string can be converted to hash map<string, obj>.
-            //HashMap<String, Object> JSON = new Gson().fromJson(JSONword, new TypeToken<HashMap<String, Object>>() {
-            //}.getType());
-            //System.out.println(JSON.get("meanings"));
-            //System.out.println(JSON.get("meanings").getClass());
-
-
         } catch (Exception e) {
             e.printStackTrace();
         }
