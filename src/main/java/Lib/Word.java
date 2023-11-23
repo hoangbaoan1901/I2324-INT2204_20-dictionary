@@ -25,9 +25,32 @@ public class Word {
 
     }
 
+    /**
+     * Create Word from given data structures.
+     *
+     * @param word
+     * @param meanings
+     */
     public Word(String word, HashMap<String, ArrayList<Pair<String, String>>> meanings) {
         this.word = word;
         this.meanings = meanings;
+    }
+
+    /**
+     * Create words from fracture elements.
+     *
+     * @param word key for object
+     * @param type word type
+     * @param definition
+     * @param example the example realted to the definition
+     */
+    public Word(String word, String type, String definition, String example) {
+        this.word = word;
+        this.meanings = new HashMap<>();
+        ArrayList<Pair<String, String>> meaningEntry = new ArrayList<>();
+        Pair<String, String> p = new Pair<>(definition, example);
+        meaningEntry.add(p);
+        this.meanings.put(type, meaningEntry);
     }
 
     public String getWord() {

@@ -3,10 +3,13 @@ package Lib;
 import javafx.util.Pair;
 import com.jayway.jsonpath.*;
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Objects;
 
 import static Lib.SQLiteConnect.getSQLiteConnection;
 
@@ -66,7 +69,7 @@ public class WordGet {
     }
 
     public static Word WordFromInstalledDatabase(String word) {
-        String path = "src/main/Dictionary.db";
+        String path = "src/main/resources/Databases/Dictionary.db";
         Connection c = getSQLiteConnection(path);
         String query = String.format("SELECT * FROM WORDS WHERE word LIKE '%s'", word);
         HashMap<String, ArrayList<Pair<String, String>>> meanings = new HashMap<>();
@@ -91,7 +94,7 @@ public class WordGet {
                 } else {
                     String wordType = resultSet.getString("wordtype");
                     String definition = resultSet.getString("definition");
-                    definition.replaceAll("[\\t\\n\\r]+"," ");
+                    definition.replaceAll("[\\t\\n\\r]+", " ");
                     Pair<String, String> p = new Pair<>(definition, null);
                     if (meanings.containsKey(wordType)) {
                         meanings.get(wordType).add(p);
@@ -111,6 +114,18 @@ public class WordGet {
         return new Word(word, meanings);
     }
 
+    public static void getPhrasalVerb(String phrasalVerb) {
+        String phrasalVerbFile = null;
+        try {
+            phrasalVerbFile = new String(
+                    Files.readAllBytes(Paths.get("src/main/resources/Databases/phrasal_verbs.json")));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Objects definition = JsonPath.read(phrasalVerbFile, "$.phrasalVerb");
+        System.out.println(definition);
+    }
+
     public static void testAPI(String word) {
         Word w = WordFromAPI(word);
         System.out.println(w);
@@ -122,7 +137,6 @@ public class WordGet {
     }
 
     public static void main(String[] args) {
-        String word = "position";
-        testDB(word);
+        getPhrasalVerb("zone in");
     }
 }
