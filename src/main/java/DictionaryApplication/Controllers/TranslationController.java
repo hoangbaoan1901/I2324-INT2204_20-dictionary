@@ -24,7 +24,6 @@ public class TranslationController implements Initializable {
     private boolean isToVietnameseLang = true;
 
 
-
     @FXML
     private void handleSwitchLanguageToggle(){
         sourceLangField.clear();

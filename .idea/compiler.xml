@@ -6,9 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="I2324-INT2204_20-dictionary" />
         <module name="demo2" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="I2324-INT2204_20-dictionary" target="20" />
+    </bytecodeTargetLevel>
   </component>
 </project>
