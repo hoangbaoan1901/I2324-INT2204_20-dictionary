@@ -15,7 +15,7 @@
                         <Image url="@../Utils/images/logo.png" />
                     </image>
                 </ImageView>
-                <Label fx:id="notAvailableAlert" alignment="CENTER" layoutX="250.0" layoutY="60.0" opacity="0.9" prefHeight="20.0" prefWidth="230.0" styleClass="warning-alert" stylesheets="@../Utils/style.css" text="Rất tiếc từ điển không cung cấp từ này">
+                <Label fx:id="notAvailableAlert" alignment="CENTER" layoutX="124.0" layoutY="68.0" opacity="0.9" prefHeight="20.0" prefWidth="230.0" styleClass="warning-alert" stylesheets="@../Utils/style.css" text="Rất tiếc từ điển không cung cấp từ này">
                     <graphic>
                         <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                             <image>

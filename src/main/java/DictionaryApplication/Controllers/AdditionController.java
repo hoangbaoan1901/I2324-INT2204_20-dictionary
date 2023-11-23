@@ -21,7 +21,7 @@ public class AdditionController {
     private Dictionary myDictionary = new Dictionary();
     private DictionaryManagement dictionaryManagement = new DictionaryManagement();
 
-    private final String path = "src/main/resources/Utils/dictionary.txt";
+    private final String path = "./src/main/resources/Utils/dictionary.txt";
     private Alerts alerts = new Alerts();
 
     @FXML
