@@ -79,6 +79,34 @@ public class SearcherController implements Initializable {
     }
 
     @FXML
+    private void handleClickSound() {
+        System.setProperty("freetts.voices", "com.sun.speech.freetts.en.us.cmu_us_kal.KevinVoiceDirectory");
+
+        VoiceManager voiceManager = VoiceManager.getInstance();
+        Voice[] voices = voiceManager.getVoices();
+
+        if (voices.length > 0) {
+            Voice voice = voices[0];
+            voice.allocate();
+
+            for (Word word : myDictionary.Words) {
+                if (isWordSelected(word)) {
+                    voice.speak(word.getWord_target());
+                    return;
+                }
+            }
+
+            throw new IllegalStateException("Cannot find selected word in the dictionary.");
+        } else {
+            throw new IllegalStateException("No voices available.");
+        }
+    }
+
+    private boolean isWordSelected(Word word) {
+        return word.getWord_target().equals(englishWord.getText());
+    }
+
+    @FXML
     private void handleOnKeyTyped() {
         list.clear();
         String searchKey = searchField.getText().trim();
@@ -153,23 +181,6 @@ public class SearcherController implements Initializable {
         }
     }
 
-    @FXML
-    private void handleClickSound() {
-        System.setProperty("freetts.voices", "com.sun.speech.freetts.en.us.cmu_us_kal.KevinVoiceDirectory");
-        Voice voice = VoiceManager.getInstance().getVoice("kevin16");
-
-        if (voice != null) {
-            voice.allocate();
-
-            for (Word word : myDictionary.Words) {
-                String wordToSpeak = word.getWord_target();
-                voice.speak(wordToSpeak);
-                break;
-            }
-        } else {
-            throw new IllegalStateException("Cannot find voice: kevin16");
-        }
-    }
 
     private void refreshAfterDeleting() {
         for (int i = 0; i < list.size(); i++) {

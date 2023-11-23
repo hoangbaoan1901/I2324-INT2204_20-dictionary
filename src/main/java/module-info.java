@@ -4,7 +4,6 @@ module Application {
     requires java.net.http;
     requires java.sql;
     requires json.path;
-    requires json.smart;
     requires javafx.graphics;
     requires org.xerial.sqlitejdbc;
     requires freetts;
