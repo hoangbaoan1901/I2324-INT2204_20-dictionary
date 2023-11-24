@@ -129,7 +129,7 @@ public class Word {
                 '}';
     }
 
-    public static Word WordFromAPI(String input_word) {
+    public static Word getWordFromAPI(String input_word) {
         Pair<Integer, String> request = new Pair<>(null, null);
         try {
             request = DictionaryGetAPI.getWord(input_word);
@@ -182,7 +182,7 @@ public class Word {
         return result;
     }
 
-    public static Word WordFromInstalledDatabase(String word) {
+    public static Word getWordFromInstalledDatabase(String word) {
         String path = "src/main/resources/Databases/Dictionary.db";
 
         try (Connection c = getSQLiteConnection(path);
@@ -221,12 +221,12 @@ public class Word {
     }
 
     public static void testAPI(String word) {
-        Word w = WordFromAPI(word);
+        Word w = getWordFromAPI(word);
         System.out.println(w);
     }
 
     public static void testDB(String word) {
-        Word w = WordFromInstalledDatabase(word);
+        Word w = getWordFromInstalledDatabase(word);
         System.out.println(w);
     }
 
