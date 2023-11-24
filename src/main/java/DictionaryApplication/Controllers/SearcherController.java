@@ -17,7 +17,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-
+import com.sun.speech.freetts.Voice;
+import com.sun.speech.freetts.VoiceManager;
 
 import java.net.URL;
 import java.util.*;
@@ -37,7 +38,7 @@ public class SearcherController implements Initializable {
     private Button cancel, save, volume;
 
     @FXML
-    private Label englishWord, resultListHeader, notAvailableAlert;
+    private Label englishWord, notAvailableAlert;
 
     @FXML
     private TextArea meaningArea;
@@ -79,6 +80,34 @@ public class SearcherController implements Initializable {
     }
 
     @FXML
+    private void handleClickSound() {
+        System.setProperty("freetts.voices", "com.sun.speech.freetts.en.us.cmu_us_kal.KevinVoiceDirectory");
+
+        VoiceManager voiceManager = VoiceManager.getInstance();
+        Voice[] voices = voiceManager.getVoices();
+
+        if (voices.length > 0) {
+            Voice voice = voices[0];
+            voice.allocate();
+
+            for (Word word : myDictionary.Words) {
+                if (isWordSelected(word)) {
+                    voice.speak(word.getWord_target());
+                    return;
+                }
+            }
+
+            throw new IllegalStateException("Cannot find selected word in the dictionary.");
+        } else {
+            throw new IllegalStateException("No voices available.");
+        }
+    }
+
+    private boolean isWordSelected(Word word) {
+        return word.getWord_target().equals(englishWord.getText());
+    }
+
+    @FXML
     private void handleOnKeyTyped() {
         list.clear();
         String searchKey = searchField.getText().trim();
@@ -89,7 +118,6 @@ public class SearcherController implements Initializable {
             setDefaultSearchResultsList();
         } else {
             notAvailableAlert.setVisible(false);
-            resultListHeader.setText("Kết quả");
             resultsListView.setItems(FXCollections.observableArrayList(list));
             firstIndexOfListFound = dictionaryManagement.searchWord(myDictionary.Words, list.get(0));
         }
@@ -153,6 +181,7 @@ public class SearcherController implements Initializable {
         }
     }
 
+
     private void refreshAfterDeleting() {
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).equals(englishWord.getText())) {
@@ -168,12 +197,6 @@ public class SearcherController implements Initializable {
     private void setDefaultSearchResultsList() {
         Iterator<Word> iterator = myDictionary.Words.iterator();
         ArrayList<Word> wordList = new ArrayList<>(myDictionary.Words);
-
-        if (firstIndexOfListFound == 0) {
-            resultListHeader.setText("Các từ đầu tiên");
-        } else {
-            resultListHeader.setText("Kết quả liên quan");
-        }
 
         list.clear();
 
@@ -197,7 +220,4 @@ public class SearcherController implements Initializable {
         }
     }
 
-
-    public void handleClickSound(ActionEvent actionEvent) {
-    }
 }
