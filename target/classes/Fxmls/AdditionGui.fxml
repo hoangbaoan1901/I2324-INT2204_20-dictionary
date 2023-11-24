@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="510.0" prefWidth="765.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DictionaryApplication.Controllers.AdditionController">
+    <children>
+        <Pane layoutX="3.0" prefHeight="91.0" prefWidth="764.0" styleClass="header" stylesheets="@../Utils/style.css">
+            <children>
+                <Pane layoutX="104.0" layoutY="20.0">
+                    <children>
+                        <Label layoutX="3.0" prefHeight="30.0" prefWidth="221.0" text="Dictionary" textFill="#465bb0">
+                            <font>
+                                <Font name="Segoe UI Bold" size="20.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="3.0" layoutY="21.0" prefHeight="30.0" prefWidth="212.0" text="Từ điển" textFill="#6cb046">
+                            <font>
+                                <Font name="Segoe UI" size="18.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </Pane>
+                <ImageView fitHeight="79.0" fitWidth="78.0" layoutX="2.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../Utils/images/picture3.jpg" />
+                    </image>
+                </ImageView>
+            </children>
+        </Pane>
+        <AnchorPane layoutY="91.0" prefHeight="421.0" prefWidth="769.0">
+            <children>
+                <Pane layoutX="2.0" prefHeight="45.0" prefWidth="764.0" styleClass="title" stylesheets="@../Utils/style.css">
+                    <children>
+                        <Label layoutX="20.0" prefHeight="45.0" prefWidth="240.0" text="Thêm từ vựng mới" textFill="#b6c47a">
+                            <font>
+                                <Font name="Segoe UI Bold" size="18.0" />
+                            </font>
+                            <graphic>
+                                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../Utils/icons/add_64px.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Label>
+                    </children>
+                </Pane>
+                <Label layoutX="24.0" layoutY="55.0" text="Từ tiếng Anh" textFill="#6cb046">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                    <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../Utils/icons/brick_64px.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Label>
+                <TextField fx:id="wordTargetInput" layoutX="26.0" layoutY="85.0" prefHeight="32.0" prefWidth="721.0" promptText="Nhập từ tiếng Anh..." styleClass="english-word-input" stylesheets="@../Utils/style.css" />
+                <Label layoutX="25.0" layoutY="119.0" text="Giải nghĩa" textFill="#6cb046">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                    <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../Utils/icons/edit_property_64px.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Label>
+                <TextArea fx:id="meaningAreaTextArea" layoutX="26.0" layoutY="150.0" prefHeight="188.0" prefWidth="721.0" promptText="Nhập nghĩa của từ..." styleClass="meaning-input" stylesheets="@../Utils/style.css" wrapText="true" />
+                <Button fx:id="add" layoutX="613.0" layoutY="358.0" mnemonicParsing="false" onAction="#handleAddButtonClick" prefHeight="32.0" prefWidth="60.0" styleClass="add-button" stylesheets="@../Utils/style.css" text="Thêm" textFill="WHITE" wrapText="true" />
+                <ImageView fitHeight="78.0" fitWidth="89.0" layoutX="686.0" layoutY="-87.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, #b8e3bd, 10, 0, 0, 0);">
+                    <image>
+                        <Image url="@../Utils/images/picture.jpg" />
+                    </image>
+                </ImageView>
+                <Label fx:id="successAlert" alignment="CENTER" layoutX="474.0" layoutY="50.0" prefHeight="32.0" prefWidth="273.0" styleClass="success-alert" stylesheets="@../Utils/style.css" text="Thành công">
+                    <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../Utils/icons/ok_48px.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Label>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>
