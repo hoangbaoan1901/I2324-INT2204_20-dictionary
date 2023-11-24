@@ -220,18 +220,6 @@ public class Word {
         }
     }
 
-    public static void getPhrasalVerb(String phrasalVerb) {
-        String phrasalVerbFile = null;
-        try {
-            phrasalVerbFile = new String(
-                    Files.readAllBytes(Paths.get("src/main/resources/Databases/phrasal_verbs.json")));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        Objects definition = JsonPath.read(phrasalVerbFile, "$.phrasalVerb");
-        System.out.println(definition);
-    }
-
     public static void testAPI(String word) {
         Word w = WordFromAPI(word);
         System.out.println(w);

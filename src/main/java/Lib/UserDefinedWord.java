@@ -91,9 +91,26 @@ public class UserDefinedWord {
         }
     }
 
+    public static void removeWordInDatabase(String word) {
+        String path = "src/main/resources/Databases/Dictionary.db";
+
+        try (Connection c = getSQLiteConnection(path);
+             Statement statement = c.createStatement()) {
+
+            String query = String.format("DELETE FROM usersWords WHERE word LIKE '%s';", word);
+
+            statement.execute(query);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
     public static void main(String[] args) {
         UserDefinedWord w = new UserDefinedWord(
                 "bomba", "an expression when Gragas players kaboom someone hihihihaw");
         addWordToDatabase(w);
+        removeWordInDatabase("bombas");
     }
 }
