@@ -1,14 +1,10 @@
 /* General styling */
 .root {
     -fx-background-color: linear-gradient(to top right, #323f93, #21bb10);
-    -fx-background-radius: 5;
-    -fx-border-radius: 5;
 }
 
 .container {
     -fx-background-color: #fff;
-    -fx-background-radius: 5;
-    -fx-border-radius: 5;
 }
 
 /* Menu styling */
@@ -23,7 +19,7 @@
     -fx-background-insets: 0;
     -fx-text-fill: #fff;
     -fx-font-weight: bold;
-    -fx-font-family: "Poppins";
+    -fx-font-family: "Segoe UI";
 }
 
 .menu-item:hover,
@@ -42,7 +38,7 @@
 .search-field {
     -fx-background-color: transparent;
     -fx-text-fill: #084165;
-    -fx-font-family: "Poppins";
+    -fx-font-family: "Segoe UI";
     -fx-font-weight: bold;
     -fx-font-size: 13;
     -fx-border: none;
@@ -95,8 +91,6 @@
 .title {
     -fx-background-color: #008b3c;
     -fx-effect: dropshadow(three-pass-box, #9ab4c5, 10, 0, 0, 0);
-    -fx-background-radius: 5;
-    -fx-border-radius: 5;
 }
 
 /* List cell styling */
@@ -158,8 +152,6 @@
     -fx-border-color: #babd6f;
     -fx-font-size: 14px;
     -fx-border-width: 1.5;
-    -fx-background-radius: 5;
-    -fx-border-radius: 5;
 }
 
 .add-button {
@@ -209,8 +201,6 @@
 .header-translate {
     -fx-border-color: #6fbd93;
     -fx-border-width: 1.5;
-    -fx-background-radius: 7 7 0 0;
-    -fx-border-radius: 7 7 0 0;
 }
 
 .src-speech-field, .to-speech-field {
@@ -248,7 +238,7 @@
     -fx-background-insets: 0;
     -fx-text-fill: #fff;
     -fx-font-weight: bold;
-    -fx-font-family: "Poppins";
+    -fx-font-family: "Segoe UI";
 }
 
 .exit-button:hover {

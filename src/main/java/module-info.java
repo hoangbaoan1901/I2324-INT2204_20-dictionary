@@ -6,6 +6,7 @@ module Application {
     requires json.path;
     requires javafx.graphics;
     requires org.xerial.sqlitejdbc;
+    requires org.json;
     requires freetts;
     opens Application to javafx.graphics;
     exports Application;
