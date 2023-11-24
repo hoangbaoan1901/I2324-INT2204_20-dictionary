@@ -3,7 +3,6 @@ package Application;
 import DictionaryApplication.DictionaryCommandLine.Dictionary;
 import DictionaryApplication.DictionaryCommandLine.Word;
 import DictionaryApplication.DictionaryCommandLine.DictionaryManagement;
-import DictionaryApplication.DictionaryCommandLine.DictionaryCommandline;
 import javafx.application.Application;
 
 import java.io.*;
