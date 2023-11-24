@@ -61,7 +61,7 @@
             <graphic>
                 <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../Utils/icons/google_translate_48px_2.png" />
+                        <Image url="@../Utils/icons/microsoft_translate_48px_2.png" />
                     </image>
                 </ImageView>
             </graphic>

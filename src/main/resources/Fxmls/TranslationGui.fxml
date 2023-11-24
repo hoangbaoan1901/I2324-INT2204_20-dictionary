@@ -101,7 +101,19 @@
                     <Image url="@../Utils/images/person.jpg" />
                 </image>
             </ImageView>
-            <Button fx:id="volume" layoutX="294.0" layoutY="379.0" mnemonicParsing="false" onAction="#handleClickSound" prefHeight="32.0" prefWidth="60.0" styleClass="volume-button">
+            <Button fx:id="volume" layoutX="3.0" layoutY="341.0" mnemonicParsing="false" onAction="#handleClickSoundSourceLanguage" prefHeight="32.0" prefWidth="60.0" styleClass="volume-button">
+                <graphic>
+                    <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@../Utils/icons/speaker_64px.png" />
+                        </image>
+                    </ImageView>
+                </graphic>
+                <tooltip>
+                    <Tooltip text="Phát âm" />
+                </tooltip>
+            </Button>
+            <Button fx:id="volume2" layoutX="585.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleClickSoundTargetLanguage" prefHeight="32.0" prefWidth="60.0" styleClass="volume-button">
                 <graphic>
                     <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                         <image>
