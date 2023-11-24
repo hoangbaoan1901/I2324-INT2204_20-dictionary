@@ -19,6 +19,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import com.sun.speech.freetts.Voice;
 import com.sun.speech.freetts.VoiceManager;
+
 import java.net.URL;
 import java.util.*;
 
@@ -37,7 +38,7 @@ public class SearcherController implements Initializable {
     private Button cancel, save, volume;
 
     @FXML
-    private Label englishWord, resultListHeader, notAvailableAlert;
+    private Label englishWord, notAvailableAlert;
 
     @FXML
     private TextArea meaningArea;
@@ -117,7 +118,6 @@ public class SearcherController implements Initializable {
             setDefaultSearchResultsList();
         } else {
             notAvailableAlert.setVisible(false);
-            resultListHeader.setText("Kết quả");
             resultsListView.setItems(FXCollections.observableArrayList(list));
             firstIndexOfListFound = dictionaryManagement.searchWord(myDictionary.Words, list.get(0));
         }
@@ -197,12 +197,6 @@ public class SearcherController implements Initializable {
     private void setDefaultSearchResultsList() {
         Iterator<Word> iterator = myDictionary.Words.iterator();
         ArrayList<Word> wordList = new ArrayList<>(myDictionary.Words);
-
-        if (firstIndexOfListFound == 0) {
-            resultListHeader.setText("Các từ đầu tiên");
-        } else {
-            resultListHeader.setText("Kết quả liên quan");
-        }
 
         list.clear();
 

@@ -58,4 +58,16 @@ public class Dictionary {
     public void removeWord(String word_target) {
         Words.removeIf(e -> e.getWord_target().equalsIgnoreCase(word_target));
     }
+
+    public HashSet<Word> searchWords(String prefix) {
+        HashSet<Word> result = new HashSet<>();
+
+        for (Word word : Words) {
+            if (word.getWord_target().startsWith(prefix)) {
+                result.add(word);
+            }
+        }
+
+        return result;
+    }
 }
