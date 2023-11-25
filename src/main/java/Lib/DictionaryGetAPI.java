@@ -1,6 +1,7 @@
 package Lib;
 
 import javafx.util.Pair;
+
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -13,8 +14,8 @@ public class DictionaryGetAPI {
      * Return a JSON formatted String of FreeDictionaryAPI.
      *
      * @param word word to parse in
-     * @throws Exception for debugging
      * @return A pair with key of HTTP response code, value is JSON string.
+     * @throws Exception for debugging
      */
     public static Pair<Integer, String> getWord(String word) throws Exception {
         HttpRequest getRequest = HttpRequest.newBuilder().
@@ -25,7 +26,7 @@ public class DictionaryGetAPI {
         HttpResponse<String> getResponse = httpClient.send(getRequest,
                 HttpResponse.BodyHandlers.ofString()); // Send the request
         int responseCode = getResponse.statusCode(); // Status code
-        return new Pair<Integer,String>(responseCode, getResponse.body());
+        return new Pair<Integer, String>(responseCode, getResponse.body());
     }
 
     public static void main(String[] args) {

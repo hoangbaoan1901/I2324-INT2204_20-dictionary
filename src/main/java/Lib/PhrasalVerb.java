@@ -12,16 +12,16 @@ import java.util.HashMap;
 import static Lib.SQLiteConnect.getSQLiteConnection;
 
 
-public class PhrasalVerb {
+public class PhrasalVerb implements WordInterface {
 
     private String words;
     private ArrayList<String> meanings;
     private ArrayList<String> examples;
 
     public PhrasalVerb() {
-        words = null;
-        meanings = null;
-        examples = null;
+        words = "";
+        meanings = new ArrayList<>();
+        examples = new ArrayList<>();
     }
 
     public PhrasalVerb(String words, ArrayList<String> meanings, ArrayList<String> examples) {
@@ -123,8 +123,30 @@ public class PhrasalVerb {
         }
     }
 
+    @Override
+    public String getKey() {
+        return String.format("%s", this.getWords());
+    }
+
+    public String getContent() {
+        StringBuilder stringBuilder = new StringBuilder();
+        if (!this.getMeanings().isEmpty()) {
+            stringBuilder.append(String.format("Definition(s):%n"));
+            for (String s : this.getMeanings()) {
+                stringBuilder.append(String.format("\t• %s%n", s));
+            }
+        }
+        if (!this.getExamples().isEmpty()) {
+            stringBuilder.append(String.format("Example(s):%n"));
+            for (String s : this.getExamples()) {
+                stringBuilder.append(String.format("\t• \'%s\'%n", s));
+            }
+        }
+        return stringBuilder.toString();
+    }
+
     public static void main(String[] args) {
-        PhrasalVerb p = getPhrasalVerbFromInstalledDatabase("abide by");
-        System.out.println(p);
+        PhrasalVerb p = getPhrasalVerbFromInstalledDatabase("jerk off");
+        System.out.println(p.getContent());
     }
 }
