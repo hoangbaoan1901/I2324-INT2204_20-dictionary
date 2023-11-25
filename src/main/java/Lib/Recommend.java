@@ -107,14 +107,36 @@ public class Recommend {
         return result;
     }
 
+    public static ArrayList<WordInterface> getUsersWordsRecommendation(String input) {
+        String word = input.toLowerCase().trim().replaceAll(" +", " ");
+        String path = "src/main/resources/Databases/Dictionary.db";
+        HashSet<String> taken = new HashSet<>(); // for seeing if we've taken those words.
+        ArrayList<WordInterface> result = new ArrayList<>();
+        String query = "SELECT word FROM usersWords WHERE word LIKE ?";
+        try (Connection connection = getSQLiteConnection(path)) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                preparedStatement.setString(1, "%" + word + "%");
+                ResultSet resultSet = preparedStatement.executeQuery();
+                while (resultSet.next()) {
+                    String resultEntry = resultSet.getString("word");
+                    result.add(UserDefinedWord.getUserDefinedWordFromDatabase(resultEntry));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
-        ArrayList<WordInterface> p = getRecommendation("trunk");
+        UserDefinedWord.addWordToDatabase(new UserDefinedWord("trunk", "the body of a tree hehehhe"));
+        ArrayList<WordInterface> p = getRecommendation("piano");
         for (WordInterface w : p) {
             if (w != null) {
                 System.out.println(w.getKey());
                 System.out.println(w.getContent());
             }
-
         }
+
     }
 }
