@@ -1,0 +1,250 @@
+/* General styling */
+.root {
+    -fx-background-color: linear-gradient(to top right, #323f93, #21bb10);
+}
+
+.container {
+    -fx-background-color: #fff;
+}
+
+/* Menu styling */
+.menu, .menu-item {
+    -fx-padding: 0;
+}
+
+.menu-item {
+    -fx-background-color: transparent;
+    -fx-background-radius: 30;
+    -fx-padding: 0 0 0 10;
+    -fx-background-insets: 0;
+    -fx-text-fill: #fff;
+    -fx-font-weight: bold;
+    -fx-font-family: "Segoe UI";
+}
+
+.menu-item:hover,
+.menu-item:focused {
+    -fx-background-color: #adcebe;
+}
+
+/* Search box styling */
+.search-box {
+    -fx-background-color: #89ec87;
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-effect: dropshadow(three-pass-box, #0d266b, 15, 0, 0, 2);
+}
+
+.search-field {
+    -fx-background-color: transparent;
+    -fx-text-fill: #084165;
+    -fx-font-family: "Segoe UI";
+    -fx-font-weight: bold;
+    -fx-font-size: 13;
+    -fx-border: none;
+}
+
+.search-field:pressed > .search-box {
+    -fx-background-color: white;
+}
+
+/* Button styling */
+.cancel-button, .edit-button, .delete-button, .volume-button {
+    -fx-padding: 0;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-background-color: #f8f8f8;
+    -fx-border: none;
+    -fx-background-insets: 0;
+    -fx-effect: dropshadow(three-pass-box, #718093, 2, 0, 0, 1);
+}
+
+.edit-button:hover, .delete-button:hover, .volume-button:hover {
+    -fx-background-color: #edeff1;
+    -fx-effect: dropshadow(three-pass-box, #2a2828, 3, 0, 0, 1);
+}
+
+.edit-button:pressed, .delete-button:pressed, .volume-button:pressed {
+    -fx-effect: dropshadow(three-pass-box, #58222a, 4, 0, 0, 1);
+}
+
+/* Save button styling */
+.save-button {
+    -fx-background-color: #e1efdb;
+    -fx-padding: 0;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-text-fill: #45b080;
+    -fx-font-weight: bold;
+    -fx-background-insets: 0;
+}
+
+.save-button:hover {
+    -fx-background-color: #4a7b35;
+}
+
+.save-button:pressed {
+    -fx-background-color: #e1efdb;
+}
+
+/* Title styling */
+.title {
+    -fx-background-color: #008b3c;
+    -fx-effect: dropshadow(three-pass-box, #9ab4c5, 10, 0, 0, 0);
+}
+
+/* List cell styling */
+.list-cell {
+    -fx-text-fill: #a4c412;
+    -fx-font-size: 16;
+    -fx-font-weight: 700;
+    -fx-padding: 5;
+    -fx-background-color: -fx-box-border, -fx-control-inner-background;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+}
+
+.list-cell:even {
+    -fx-background-color: #f5f6fa;
+}
+
+.list-cell:odd {
+    -fx-background-color: #eff0fb;
+}
+
+.list-cell:filled:hover, .list-cell:filled:selected {
+    -fx-background-color: linear-gradient(to bottom left, #255b16, #9cc4a2);
+    -fx-text-fill: white;
+}
+
+/* Scroll bar styling */
+.list-cell .scroll-bar:horizontal .track,
+.list-cell .scroll-bar:vertical .track {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0em;
+    -fx-border-radius: 2em;
+}
+
+.list-cell .scroll-bar:vertical .increment-button,
+.list-cell .scroll-bar:vertical .decrement-button,
+.list-cell .scroll-bar:horizontal .increment-button,
+.list-cell .scroll-bar:horizontal .decrement-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0em;
+}
+
+.list-cell .scroll-bar .increment-arrow,
+.list-cell .scroll-bar .decrement-arrow {
+    -fx-padding: 0;
+}
+
+.list-cell .scroll-bar:vertical .thumb,
+.list-cell .scroll-bar:horizontal .thumb {
+    -fx-background-color: #f6f4e5;
+    -fx-background-insets: 2, 0, 0;
+    -fx-background-radius: 2em;
+}
+
+/* Add new word component styling */
+.english-word-input, .meaning-input {
+    -fx-text-fill: #45b047;
+    -fx-border-color: #babd6f;
+    -fx-font-size: 14px;
+    -fx-border-width: 1.5;
+}
+
+.add-button {
+    -fx-text-fill: #ecf0f1;
+    -fx-background-radius: 5px;
+    -fx-font-size: 13px;
+    -fx-font-weight: 700;
+    -fx-background-color: linear-gradient(to bottom left, #008b13, #4577b0);
+    -fx-pref-width: 100px;
+    -fx-pref-height: 25px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 10, 0, 0, 0);
+}
+
+.trans-button {
+    -fx-text-fill: #ecf0f1;
+    -fx-background-radius: 5px;
+    -fx-font-size: 13px;
+    -fx-font-weight: 700;
+    -fx-background-color: linear-gradient(to bottom left, #008b13, #4577b0);
+    -fx-pref-width: 100px;
+    -fx-pref-height: 25px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 10, 0, 0, 0);
+}
+
+.add-button:pressed, .trans-button:pressed {
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+}
+
+.success-alert, .warning-alert {
+    -fx-font-size: 14px;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+}
+
+.success-alert {
+    -fx-text-fill: #009432;
+    -fx-background-color: #c8fcd8;
+}
+
+.warning-alert {
+    -fx-text-fill: #1bc432;
+    -fx-background-color: #daf8db;
+}
+
+/* Translate component styling */
+.header-translate {
+    -fx-border-color: #6fbd93;
+    -fx-border-width: 1.5;
+}
+
+.src-speech-field, .to-speech-field {
+    -fx-text-fill: #45b047;
+    -fx-border-color: #6fbd9f;
+    -fx-font-size: 18px;
+    -fx-border-width: 1.5;
+}
+
+.src-speech-field {
+    -fx-background-radius: 0 0 0 7;
+    -fx-border-radius: 0 0 0 7;
+}
+
+.to-speech-field {
+    -fx-background-radius: 0 0 7 0;
+    -fx-border-radius: 0 0 7 0;
+}
+
+/* Switch button styling */
+.switch-button {
+    -fx-background-color: transparent;
+}
+
+.switch-button:pressed {
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-background-color: #ffffff;
+}
+
+/* Exit button styling */
+.exit-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 30;
+    -fx-background-insets: 0;
+    -fx-text-fill: #fff;
+    -fx-font-weight: bold;
+    -fx-font-family: "Segoe UI";
+}
+
+.exit-button:hover {
+    -fx-background-color: #12b200;
+}
+
+.label {
+    -fx-alignment: center;
+}
