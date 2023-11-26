@@ -244,3 +244,7 @@
 .exit-button:hover {
     -fx-background-color: #12b200;
 }
+
+.label {
+    -fx-alignment: center;
+}

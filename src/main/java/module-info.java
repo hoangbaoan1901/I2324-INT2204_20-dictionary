@@ -10,6 +10,7 @@ module Application {
     requires org.json;
     requires freetts;
     requires java.desktop;
+    requires org.kordamp.bootstrapfx.core;
     opens Application to javafx.graphics;
     exports Application;
     exports DictionaryApplication.Controllers;
