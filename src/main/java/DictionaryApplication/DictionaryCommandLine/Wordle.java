@@ -74,7 +74,7 @@ public class Wordle {
         this.key = getRandomLineFromFile(Path.of("src/main/resources/Utils/wordle.txt"));
         this.isPlaying = true;
         this.won = false;
-        System.out.println(this.getKey());
+//        System.out.println(this.getKey());
     }
 
 
@@ -121,8 +121,8 @@ public class Wordle {
                     }
                 }
                 this.tries += 1;
-                if (this.tries > 6) {
-                    System.out.println(this.getKey());
+                if (this.tries == 6) {
+//                    System.out.println(this.getKey());
                     this.isPlaying = false;
                     return Wordle.LOST;
                 }

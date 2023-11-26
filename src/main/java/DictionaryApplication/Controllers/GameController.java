@@ -116,6 +116,25 @@ public class GameController {
             } else {
                 if (attemptResult.equals(Wordle.LOST)) {
                     // Handle lose case
+                    for (int i = 0; i < 5; i++) {
+                        boxesArray[row][i].setText(guess.substring(i, i + 1).toUpperCase());
+                        if (wd.getKey().charAt(i) == guess.charAt(i)) {
+                            boxesArray[row][i].setStyle("-fx-background-color: #79b851;" +
+                                    "-fx-text-fill: #fbfcff;" +
+                                    "-fx-font-size: 18");
+                        } else {
+                            if (wd.getKey().indexOf(guess.charAt(i)) != -1) {
+                                boxesArray[row][i].setStyle("-fx-background-color: #f3c237;" +
+                                        "-fx-text-fill: #fbfcff;" +
+                                        "-fx-font-size: 18");
+                            } else {
+                                boxesArray[row][i].setStyle("-fx-background-color: #808080;" +
+                                        "-fx-text-fill: #fbfcff;" +
+                                        "-fx-font-size: 18");
+                            }
+                        }
+
+                    }
                     String s = wd.getKey();
                     String log = String.format("Bạn thua , từ cần đoán là %s", s);
                     logger.setText(log);
