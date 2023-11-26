@@ -67,7 +67,10 @@
                 </Label>
             </children>
         </HBox>
-        <TextField fx:id="guessInput" layoutX="527.0" layoutY="138.0" onKeyPressed="#handleOnEnterPress" prefHeight="38.0" prefWidth="176.0" promptText="Enter your word here" />
+        <TextField fx:id="guessInput" layoutX="517.0" layoutY="130.0" onKeyPressed="#handleOnEnterPress" prefHeight="38.0" prefWidth="176.0" promptText="Enter your word here">
+         <font>
+            <Font size="18.0" />
+         </font></TextField>
         <HBox alignment="CENTER" layoutX="150.0" layoutY="100.0" prefHeight="50.0" prefWidth="265.0">
             <children>
                 <Label fx:id="box00" alignment="CENTER" prefHeight="50.0" prefWidth="50.0" style="-fx-border-color: black;" text="">
@@ -242,5 +245,10 @@
                 </Label>
             </children>
         </HBox>
+      <TextField fx:id="logger" layoutX="487.0" layoutY="219.0" prefHeight="50.0" prefWidth="235.0">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </TextField>
     </children>
 </AnchorPane>

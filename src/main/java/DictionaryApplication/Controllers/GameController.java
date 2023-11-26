@@ -8,6 +8,8 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
+import javax.swing.*;
+
 public class GameController {
     @FXML
     private TextField guessInput;
@@ -77,6 +79,10 @@ public class GameController {
     @FXML
     private Label box54;
 
+    @FXML
+    private TextField logger;
+
+
     private Wordle wd = new Wordle();
 
     @FXML
@@ -107,23 +113,26 @@ public class GameController {
             }
             if (attemptResult.equals(Wordle.WIN)) {
                 // Handle win case
+                logger.setText("Bạn thắng");
                 return;
             } else {
                 if (attemptResult.equals(Wordle.LOST)) {
                     // Handle lose case
-                } else {
-                    // Handle guess case:
-
+                    String s = wd.getKey();
+                    String log = String.format("Bạn thua , từ cần đoán là %s", s);
+                    logger.setText(log);
                 }
             }
         } else {
             // Show error in Textbox
+            logger.setText("Bạn đã nhập một từ không hợp lệ, vui lòng nhập từ khác ");
         }
     }
 
     public void handleOnEnterPress(KeyEvent keyEvent) {
         if (keyEvent.getCode() == KeyCode.ENTER) {
             checkGuess();
+            guessInput.setText("");
         }
     }
 
