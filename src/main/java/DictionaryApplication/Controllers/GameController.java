@@ -165,9 +165,11 @@ public class GameController {
 
     @FXML
     private void handleOnEnterPress(KeyEvent keyEvent) {
-        if (keyEvent.getCode() == KeyCode.ENTER) {
-            checkGuess();
-            guessInput.setText("");
+        if (this.wd.isPlaying()) {
+            if (keyEvent.getCode() == KeyCode.ENTER) {
+                checkGuess();
+                guessInput.setText("");
+            }
         }
     }
 
