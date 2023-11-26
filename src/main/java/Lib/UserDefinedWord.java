@@ -160,7 +160,7 @@ public class UserDefinedWord implements WordInterface {
     }
 
     public static void main(String[] args) {
-        UserDefinedWord w = getUserDefinedWordFromDatabase("Trunk");
+        UserDefinedWord w = getUserDefinedWordFromDatabase("");
         System.out.println(w.getContent());
     }
 }
