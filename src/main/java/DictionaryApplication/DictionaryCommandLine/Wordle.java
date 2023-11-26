@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -75,6 +74,7 @@ public class Wordle {
         this.key = getRandomLineFromFile(Path.of("src/main/resources/Utils/wordle.txt"));
         this.isPlaying = true;
         this.won = false;
+        System.out.println(this.getKey());
     }
 
 
@@ -84,13 +84,13 @@ public class Wordle {
         }
         Scanner scanner = null;
         try {
-            scanner = new Scanner(new File("src/main/resources/Utils/wordle.txt"));
+            scanner = new Scanner(new File("src/main/resources/Utils/valid_wordle.txt"));
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
         while (scanner.hasNextLine()) {
             String wordle = scanner.nextLine();
-            if (s.equals(wordle)) {
+            if (s.toLowerCase().equals(wordle.toLowerCase())) {
                 return true;
             }
         }
@@ -99,7 +99,8 @@ public class Wordle {
 
 
     // Player will try to guess the word
-    public String attempt(String s) {
+    public String attempt(String input) {
+        String s = input.toLowerCase();
         if (this.isPlaying) {
             if (s.equals(this.key)) {
                 this.isPlaying = false;
@@ -123,6 +124,7 @@ public class Wordle {
                 if (this.tries > 6) {
                     System.out.println(this.getKey());
                     this.isPlaying = false;
+                    return Wordle.LOST;
                 }
                 return states;
             }

@@ -7,10 +7,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 
 import javax.swing.*;
 
 public class GameController {
+    public Button reset;
     @FXML
     private TextField guessInput;
     @FXML
@@ -80,7 +82,7 @@ public class GameController {
     private Label box54;
 
     @FXML
-    private TextField logger;
+    private Label logger;
 
 
     private Wordle wd = new Wordle();
@@ -95,24 +97,20 @@ public class GameController {
                 {box40, box41, box42, box43, box44},
                 {box50, box51, box52, box53, box54}
         };
+        logger.setText("");
+        logger.setWrapText(true);
         String guess = guessInput.getText();
         int row = wd.getTries();
         if (Wordle.verifyWord(guess)) {
             String attemptResult = wd.attempt(guess);
-            for (int i = 0; i < 5; i++) {
-                boxesArray[row][i].setText(guess.substring(i, i + 1));
-            }
-            for (int i = 0; i < 5; i++) {
-                if (attemptResult.charAt(i) == 'n') {
-                    boxesArray[row][i].setStyle("-fx-background-color: #808080;");
-                } else if (attemptResult.charAt(i) == 't') {
-                    boxesArray[row][i].setStyle("-fx-background-color: #79b851;");
-                } else {
-                    boxesArray[row][i].setStyle("-fx-background-color: #f3c237;");
-                }
-            }
             if (attemptResult.equals(Wordle.WIN)) {
                 // Handle win case
+                for (int i = 0; i < 5; i++) {
+                    boxesArray[row][i].setStyle("-fx-background-color: #79b851;" +
+                            "-fx-text-fill: #fbfcff;" +
+                            "-fx-font-size: 18");
+                    boxesArray[row][i].setText(guess.substring(i, i + 1).toUpperCase());
+                }
                 logger.setText("Bạn thắng");
                 return;
             } else {
@@ -121,6 +119,23 @@ public class GameController {
                     String s = wd.getKey();
                     String log = String.format("Bạn thua , từ cần đoán là %s", s);
                     logger.setText(log);
+                } else {
+                    for (int i = 0; i < 5; i++) {
+                        boxesArray[row][i].setText(guess.substring(i, i + 1).toUpperCase());
+                        if (attemptResult.charAt(i) == 'n') {
+                            boxesArray[row][i].setStyle("-fx-background-color: #808080;" +
+                                    "-fx-text-fill: #fbfcff;" +
+                                    "-fx-font-size: 18");
+                        } else if (attemptResult.charAt(i) == 't') {
+                            boxesArray[row][i].setStyle("-fx-background-color: #79b851;" +
+                                    "-fx-text-fill: #fbfcff;" +
+                                    "-fx-font-size: 18");
+                        } else {
+                            boxesArray[row][i].setStyle("-fx-background-color: #f3c237;" +
+                                    "-fx-text-fill: #fbfcff;" +
+                                    "-fx-font-size: 18");
+                        }
+                    }
                 }
             }
         } else {
@@ -129,12 +144,35 @@ public class GameController {
         }
     }
 
-    public void handleOnEnterPress(KeyEvent keyEvent) {
+    @FXML
+    private void handleOnEnterPress(KeyEvent keyEvent) {
         if (keyEvent.getCode() == KeyCode.ENTER) {
             checkGuess();
             guessInput.setText("");
         }
     }
 
+    @FXML
+    private void handleClickReset(MouseEvent mouseEvent) {
+        wd = new Wordle();
+        Label[][] boxesArray = {
+                {box00, box01, box02, box03, box04},
+                {box10, box11, box12, box13, box14},
+                {box20, box21, box22, box23, box24},
+                {box30, box31, box32, box33, box34},
+                {box40, box41, box42, box43, box44},
+                {box50, box51, box52, box53, box54}
+        };
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 5; j++) {
+                boxesArray[i][j].setText("");
+                boxesArray[i][j].setStyle("-fx-background-color: #fbfcff;" +
+                        "-fx-border-color: #000000;");
+            }
+        }
+        guessInput.setText("");
+
+        logger.setText("");
+    }
 }
 
