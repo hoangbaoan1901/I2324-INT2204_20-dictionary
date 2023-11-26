@@ -21,14 +21,14 @@
                     </image>
                 </ImageView>
 
-                <Label layoutX="95.0" layoutY="26.0" prefHeight="45.0" prefWidth="131.0" text="Dictionary" textFill="#070219">
+                <Label layoutX="95.0" layoutY="26.0" prefHeight="45.0" prefWidth="65.0" text="Game" textFill="#070219">
                     <font>
                         <Font name="Segoe UI Bold" size="16.5" />
                     </font>
                 </Label>
                 <ImageView fitHeight="72.0" fitWidth="110.0" layoutX="14.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../Utils/images/logo.png" />
+                        <Image url="@../Utils/icons/game_64px.png" />
                     </image>
                 </ImageView>
                 <ImageView fitHeight="78.0" fitWidth="110.0" layoutX="669.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">

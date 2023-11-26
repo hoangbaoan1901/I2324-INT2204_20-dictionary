@@ -29,7 +29,7 @@
 
 /* Search box styling */
 .search-box {
-    -fx-background-color: #89ec87;
+    -fx-background-color: #dae8d9;
     -fx-background-radius: 30;
     -fx-border-radius: 30;
     -fx-effect: dropshadow(three-pass-box, #0d266b, 15, 0, 0, 2);

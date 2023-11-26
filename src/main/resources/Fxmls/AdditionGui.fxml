@@ -34,7 +34,7 @@
             <children>
                 <Pane layoutX="2.0" prefHeight="45.0" prefWidth="764.0" styleClass="title" stylesheets="@../Utils/style.css">
                     <children>
-                        <Label layoutX="20.0" prefHeight="45.0" prefWidth="240.0" text="Thêm từ vựng mới" textFill="#b6c47a">
+                        <Label layoutX="20.0" prefHeight="45.0" prefWidth="202.0" text="Thêm từ vựng mới" textFill="#b6c47a">
                             <font>
                                 <Font name="Segoe UI Bold" size="18.0" />
                             </font>
