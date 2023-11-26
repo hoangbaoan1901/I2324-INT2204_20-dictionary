@@ -106,26 +106,15 @@ public class DictionaryManagement {
 
     public int searchWord(HashSet<Word> myDictionary, String keyword) {
         try {
-            List<Word> sortedWords = new ArrayList<>(myDictionary);
-
-            Collections.sort(sortedWords, (w1, w2) -> w1.getWord_target().compareTo(w2.getWord_target()));
-
-            int left = 0;
-            int right = sortedWords.size() - 1;
-
-            while (left <= right) {
-                int mid = left + (right - left) / 2;
-                int res = sortedWords.get(mid).getWord_target().compareTo(keyword);
-
+            int index = 0;
+            for (Word word : myDictionary) {
+                int res = word.getWord_target().compareTo(keyword);
                 if (res == 0) {
-                    return mid;
+                    return index;
+                } else if (res > 0) {
+                    break;
                 }
-
-                if (res < 0) {
-                    left = mid + 1;
-                } else {
-                    right = mid - 1;
-                }
+                index++;
             }
         } catch (NullPointerException e) {
             System.out.println("Null Exception.");
@@ -134,35 +123,50 @@ public class DictionaryManagement {
     }
 
 
-    public void updateWord(Dictionary myDictionary, int index, String meaning, String path) {
+
+    public void updateWord(Dictionary myDictionary, String wordToUpdate, String meaning, String path) {
         try {
-            if (index >= 0 && index < myDictionary.Words.size()) {
-                Word wordToUpdate = new ArrayList<>(myDictionary.Words).get(index);
-                wordToUpdate.setWord_explain(meaning);
+            boolean found = false;
+            for (Word word : myDictionary.Words) {
+                if (word.getWord_target().equals(wordToUpdate)) {
+                    word.setWord_explain(meaning);
+                    found = true;
+                    break;
+                }
+            }
+
+            if (found) {
                 exportToFile(myDictionary, path);
             } else {
-                System.out.println("Invalid index. Word not updated.");
+                System.out.println("Word not found. Unable to update.");
             }
         } catch (NullPointerException e) {
             System.out.println("Null Exception.");
         }
     }
-
-    public void deleteWord(Dictionary myDictionary, int index, String path) {
+    public void deleteWord(Dictionary myDictionary, String wordToDelete, String path) {
         try {
-            if (index >= 0 && index < myDictionary.Words.size()) {
-                myDictionary.Words.remove(index);
-                Trie trie = new Trie();
-                setTrie(myDictionary);
+            boolean found = false;
+            Iterator<Word> iterator = myDictionary.Words.iterator();
+
+            while (iterator.hasNext()) {
+                Word word = iterator.next();
+                if (word.getWord_target().equals(wordToDelete)) {
+                    iterator.remove();
+                    found = true;
+                    break;
+                }
+            }
+
+            if (found) {
                 exportToFile(myDictionary, path);
             } else {
-                System.out.println("Invalid index. Word not deleted.");
+                System.out.println("Word not found. Unable to delete.");
             }
         } catch (NullPointerException e) {
             System.out.println("Null Exception.");
         }
     }
-
     public void insertWord(Word word, String path) {
         try (FileWriter fileWriter = new FileWriter(path, true);
              BufferedWriter buffer = new BufferedWriter(fileWriter)) {

@@ -247,9 +247,9 @@
                 </Label>
             </children>
         </HBox>
-        <Label fx:id="logger" layoutX="477.0" layoutY="193.0" prefHeight="174.0" prefWidth="256.0" textFill="#100172" wrapText="true">
+        <Label fx:id="logger" layoutX="477.0" layoutY="193.0" prefHeight="174.0" prefWidth="256.0" textAlignment="CENTER" textFill="#100172" wrapText="true">
             <font>
-                <Font size="24.0" />
+                <Font name="Segoe UI Bold" size="24.0" />
             </font>
         </Label>
         <Button fx:id="reset" layoutX="550.0" layoutY="425.0" mnemonicParsing="false" onMouseClicked="#handleClickReset" prefHeight="39.0" prefWidth="117.0" styleClass="trans-button" stylesheets="@../Utils/style.css" text="New Game" />

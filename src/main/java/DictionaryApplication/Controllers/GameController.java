@@ -111,7 +111,7 @@ public class GameController {
                             "-fx-font-size: 18");
                     boxesArray[row][i].setText(guess.substring(i, i + 1).toUpperCase());
                 }
-                logger.setText("Bạn thắng");
+                logger.setText("Xin chúc mừng, Bạn đã thắng");
                 return;
             } else {
                 if (attemptResult.equals(Wordle.LOST)) {
@@ -136,7 +136,7 @@ public class GameController {
 
                     }
                     String s = wd.getKey();
-                    String log = String.format("Bạn thua , từ cần đoán là %s", s);
+                    String log = String.format("Rất tiếc bạn đã thua , từ cần đoán là :  %s", s);
                     logger.setText(log);
                 } else {
                     for (int i = 0; i < 5; i++) {

@@ -156,7 +156,18 @@ public class SearcherController implements Initializable {
         // option != null.
         Optional<ButtonType> option = alertConfirmation.showAndWait();
         if (option.get() == ButtonType.OK) {
-            dictionaryManagement.updateWord(myDictionary, indexOfSelectedWord, meaningArea.getText(), path);
+            String newMeaning = meaningArea.getText();
+            String wordToUpdate = englishWord.getText();
+
+            // Remove the old word from the list
+            list.remove(wordToUpdate);
+
+            // Update the meaning of the selected word
+            dictionaryManagement.updateWord(myDictionary, wordToUpdate, newMeaning, path);
+
+            // Add the updated word back to the list
+            list.add(wordToUpdate);
+
             // successfully
             alerts.showAlertInfo("Information", "Cập nhập thành công!");
         } else {
@@ -173,7 +184,8 @@ public class SearcherController implements Initializable {
         alertWarning.getButtonTypes().add(ButtonType.CANCEL);
         Optional<ButtonType> option = alertWarning.showAndWait();
         if (option.get() == ButtonType.OK) {
-            dictionaryManagement.deleteWord(myDictionary, indexOfSelectedWord, path);
+            String wordToDelete = englishWord.getText();
+            dictionaryManagement.deleteWord(myDictionary, wordToDelete, path);
             refreshAfterDeleting();
             alerts.showAlertInfo("Information", "Xóa thành công");
         } else {
@@ -183,13 +195,9 @@ public class SearcherController implements Initializable {
 
 
     private void refreshAfterDeleting() {
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).equals(englishWord.getText())) {
-                list.remove(i);
-                break;
-            }
-        }
+        list.remove(englishWord.getText());
         resultsListView.setItems(list);
+
         explanationHeaderPane.setVisible(false);
         meaningArea.setVisible(false);
     }
