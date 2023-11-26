@@ -17,10 +17,10 @@ import java.util.ResourceBundle;
 public class DictionaryController implements Initializable {
 
 	@FXML
-	private Tooltip tooltip1, tooltip2, tooltip3;
+	private Tooltip tooltip1, tooltip2, tooltip3, tooltip4;
 
 	@FXML
-	private Button addWord, translate, searchWord, close;
+	private Button addWord, translate, searchWord, close, game;
 
 	@FXML
 	private AnchorPane container;
@@ -30,9 +30,11 @@ public class DictionaryController implements Initializable {
 		searchWord.setOnAction(this::handleSearchWord);
 		addWord.setOnAction(this::handleAddWord);
 		translate.setOnAction(this::handleTranslate);
+		game.setOnAction(this::handleGame);
 		tooltip1.setShowDelay(Duration.seconds(0.5));
 		tooltip2.setShowDelay(Duration.seconds(0.5));
 		tooltip3.setShowDelay(Duration.seconds(0.5));
+		tooltip4.setShowDelay(Duration.seconds(0.5));
 		showComponent("/Fxmls/SearcherGui.fxml");
 		close.setOnMouseClicked(e -> System.exit(0));
 	}
@@ -55,6 +57,11 @@ public class DictionaryController implements Initializable {
 	@FXML
 	private void handleTranslate(ActionEvent event) {
 		showComponent("/Fxmls/TranslationGui.fxml");
+	}
+
+	@FXML
+	private void handleGame(ActionEvent event) {
+		showComponent("/Fxmls/GameGui.fxml");
 	}
 
 	@FXML

@@ -104,7 +104,7 @@ public class Wordle {
             if (s.equals(this.key)) {
                 this.isPlaying = false;
                 this.won = true;
-                return "WIN";
+                return Wordle.WIN;
             } else {
                 String states = "";
                 for (int i = 0; i < 5; i++) {
@@ -127,7 +127,7 @@ public class Wordle {
                 return states;
             }
         } else {
-            return "LOST";
+            return Wordle.LOST;
         }
     }
 

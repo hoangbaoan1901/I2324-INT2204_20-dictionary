@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="510.0" prefWidth="769.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DictionaryApplication.Controllers.GameController">
+    <children>
+        <Pane layoutX="8.0" prefHeight="91.0" prefWidth="751.0" stylesheets="@../Utils/style.css">
+            <children>
+                <ImageView fitHeight="120.0" fitWidth="110.0" layoutX="14.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                    <image>
+                        <Image url="@../Utils/images/logo.png" />
+                    </image>
+                </ImageView>
+
+                <Label layoutX="95.0" layoutY="26.0" prefHeight="45.0" prefWidth="131.0" text="Dictionary" textFill="#070219">
+                    <font>
+                        <Font name="Segoe UI Bold" size="16.5" />
+                    </font>
+                </Label>
+                <ImageView fitHeight="72.0" fitWidth="110.0" layoutX="14.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../Utils/images/logo.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="78.0" fitWidth="110.0" layoutX="669.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../Utils/images/picture2.jpg" />
+                    </image>
+                </ImageView>
+
+            </children>
+        </Pane>
+        <AnchorPane layoutY="92.0" prefHeight="415.0" prefWidth="769.0" styleClass="main-game" stylesheets="@../Utils/style.css">
+            <children>
+                <AnchorPane layoutX="-6.0" prefHeight="415.0" prefWidth="449.0">
+                    <children>
+                        <Pane layoutX="7.0" prefHeight="45.0" prefWidth="759.0" styleClass="title" stylesheets="@../Utils/style.css">
+                            <children>
+                                <Label layoutX="14.0" prefHeight="45.0" prefWidth="157.0" text="Game" textFill="#daeb4d">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="17.0" />
+                                    </font>
+                                    <graphic>
+                                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../Utils/icons/game_64px.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Label>
+                            </children>
+                        </Pane>
+                        <Pane layoutX="7.0" layoutY="48.0" prefHeight="345.0" prefWidth="759.0" styleClass="definition-wrapper" stylesheets="@../Utils/style.css">
+                            <children>
+                        <HBox layoutX="225.0" layoutY="5.0" prefHeight="45.0" prefWidth="202.0">
+                           <children>
+                              <Label prefHeight="41.0" prefWidth="40.0" text="Label" />
+                              <Label prefHeight="41.0" prefWidth="40.0" text="Label" />
+                              <Label prefHeight="41.0" prefWidth="40.0" text="Label" />
+                              <Label prefHeight="41.0" prefWidth="40.0" text="Label" />
+                              <Label prefHeight="41.0" prefWidth="40.0" text="Label" />
+                           </children>
+                        </HBox>
+                        <HBox layoutX="225.0" layoutY="65.0" prefHeight="45.0" prefWidth="202.0">
+                           <children>
+                              <Label prefHeight="41.0" prefWidth="40.0" text="Label" />
+                              <Label prefHeight="41.0" prefWidth="40.0" text="Label" />
+                              <Label prefHeight="41.0" prefWidth="40.0" text="Label" />
+                              <Label prefHeight="41.0" prefWidth="40.0" text="Label" />
+                              <Label prefHeight="41.0" prefWidth="40.0" text="Label" />
+                           </children>
+                        </HBox>
+                        <HBox layoutX="225.0" layoutY="125.0" prefHeight="45.0" prefWidth="202.0">
+                           <children>
+                              <Label prefHeight="41.0" prefWidth="40.0" text="Label" />
+                              <Label prefHeight="41.0" prefWidth="40.0" text="Label" />
+                              <Label prefHeight="41.0" prefWidth="40.0" text="Label" />
+                              <Label prefHeight="41.0" prefWidth="40.0" text="Label" />
+                              <Label prefHeight="41.0" prefWidth="40.0" text="Label" />
+                           </children>
+                        </HBox>
+                        <HBox layoutX="225.0" layoutY="185.0" prefHeight="45.0" prefWidth="202.0">
+                           <children>
+                              <Label prefHeight="41.0" prefWidth="40.0" text="Label" />
+                              <Label prefHeight="41.0" prefWidth="40.0" text="Label" />
+                              <Label prefHeight="41.0" prefWidth="40.0" text="Label" />
+                              <Label prefHeight="41.0" prefWidth="40.0" text="Label" />
+                              <Label prefHeight="41.0" prefWidth="40.0" text="Label" />
+                           </children>
+                        </HBox>
+                        <HBox layoutX="225.0" layoutY="245.0" prefHeight="45.0" prefWidth="202.0">
+                           <children>
+                              <Label prefHeight="41.0" prefWidth="40.0" text="Label" />
+                              <Label prefHeight="41.0" prefWidth="40.0" text="Label" />
+                              <Label prefHeight="41.0" prefWidth="40.0" text="Label" />
+                              <Label prefHeight="41.0" prefWidth="40.0" text="Label" />
+                              <Label prefHeight="41.0" prefWidth="40.0" text="Label" />
+                           </children>
+                        </HBox>
+                        <HBox layoutX="225.0" layoutY="305.0" prefHeight="45.0" prefWidth="202.0">
+                           <children>
+                              <Label prefHeight="41.0" prefWidth="40.0" text="Label" />
+                              <Label prefHeight="41.0" prefWidth="40.0" text="Label" />
+                              <Label prefHeight="41.0" prefWidth="40.0" text="Label" />
+                              <Label prefHeight="41.0" prefWidth="40.0" text="Label" />
+                              <Label prefHeight="41.0" prefWidth="40.0" text="Label" />
+                           </children>
+                        </HBox>
+                        <TextField layoutX="570.0" layoutY="170.0" />
+                        <Text layoutX="544.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="202.0" />
+                            </children>
+                        </Pane>
+                    </children>
+                </AnchorPane>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>
