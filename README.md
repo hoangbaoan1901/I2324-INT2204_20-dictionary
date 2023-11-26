@@ -9,7 +9,7 @@ This is the best image that we could've provided, other packages were used expli
 
 ## Features
 We offer English - Vietnamese translation, both: offline via words that came with the 
-repo and, through Microsoft Translation API.<br>
+repo and, some what online through Microsoft Translation API.<br>
 Also we've also made a goofy clone of Wordle, feel free to try that out.
 
 ## Run
