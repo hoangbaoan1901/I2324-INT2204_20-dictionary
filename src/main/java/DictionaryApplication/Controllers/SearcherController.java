@@ -51,11 +51,13 @@ public class SearcherController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Initialization of the dictionary
         dictionaryManagement.insertFromFile(myDictionary, path);
         dictionaryManagement.setTrie(myDictionary);
         setDefaultSearchResultsList();
         cancel.setVisible(false);
 
+        // Search field event handler
         searchField.setOnKeyTyped(keyEvent -> {
             if (searchField.getText().isEmpty()) {
                 cancel.setVisible(false);
@@ -66,6 +68,7 @@ public class SearcherController implements Initializable {
             }
         });
 
+        // Cancel button event handler
         cancel.setOnAction(event -> {
             searchField.clear();
             notAvailableAlert.setVisible(false);
@@ -73,6 +76,11 @@ public class SearcherController implements Initializable {
             setDefaultSearchResultsList();
         });
 
+        // Configuration of meaning area and related components
+        configureMeaningArea();
+    }
+
+    private void configureMeaningArea() {
         meaningArea.setEditable(false);
         save.setVisible(false);
         cancel.setVisible(false);
@@ -109,16 +117,42 @@ public class SearcherController implements Initializable {
 
     @FXML
     private void handleOnKeyTyped() {
+        clearListAndSearchKey();
+        String searchKey = getTrimmedSearchKey();
+        updateResultList(searchKey);
+        updateResultsViewAndAlert();
+    }
+
+    private void clearListAndSearchKey() {
         list.clear();
-        String searchKey = searchField.getText().trim();
+    }
+
+    private String getTrimmedSearchKey() {
+        return searchField.getText().trim();
+    }
+
+    private void updateResultList(String searchKey) {
         List<String> resultList = dictionaryManagement.dictionaryLookup(myDictionary, searchKey);
         list = FXCollections.observableArrayList(resultList);
+    }
+
+    private void updateResultsViewAndAlert() {
         if (list.isEmpty()) {
             notAvailableAlert.setVisible(true);
             setDefaultSearchResultsList();
         } else {
             notAvailableAlert.setVisible(false);
-            resultsListView.setItems(FXCollections.observableArrayList(list));
+            updateResultsListView();
+            updateFirstIndexOfListFound();
+        }
+    }
+
+    private void updateResultsListView() {
+        resultsListView.setItems(FXCollections.observableArrayList(list));
+    }
+
+    private void updateFirstIndexOfListFound() {
+        if (!list.isEmpty()) {
             firstIndexOfListFound = dictionaryManagement.searchWord(myDictionary.Words, list.get(0));
         }
     }

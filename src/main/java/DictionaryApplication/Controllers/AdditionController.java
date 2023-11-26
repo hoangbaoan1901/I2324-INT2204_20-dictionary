@@ -74,37 +74,47 @@ public class AdditionController {
 
     private void handleExistingWord(Word word) {
         int indexOfWord = dictionaryManagement.searchWord(myDictionary.Words, word.getWord_target());
-        Alert selectionAlert = alerts.alertConfirmation("This word already exists",
+        Alert selectionAlert = alerts.alertConfirmation(
+                "This word already exists",
                 "Từ này đã tồn tại.\n" +
-                        "Thay thế hoặc bổ sung nghĩa vừa nhập cho nghĩa cũ.");
+                        "Thay thế hoặc bổ sung nghĩa vừa nhập cho nghĩa cũ."
+        );
 
         ButtonType replace = new ButtonType("Thay thế");
         ButtonType insert = new ButtonType("Bổ sung");
         selectionAlert.getButtonTypes().setAll(replace, insert, CANCEL);
+
         Optional<ButtonType> selection = selectionAlert.showAndWait();
 
-        if (selection.isPresent()) {
-            ButtonType buttonType = selection.get();
+        selection.ifPresent(buttonType -> {
             if (buttonType.equals(replace)) {
-                myDictionary.Words.removeIf(w -> w.equals(word));
-                myDictionary.Words.add(word);
-                dictionaryManagement.exportToFile(myDictionary, path);
-                showSuccessAlert();
+                replaceWord(word);
             } else if (buttonType.equals(insert)) {
-                Word existingWord = myDictionary.Words.stream()
-                        .filter(w -> w.equals(word))
-                        .findFirst()
-                        .orElse(null);
-
-                if (existingWord != null) {
-                    String oldMeaning = existingWord.getWord_explain();
-                    existingWord.setWord_explain(oldMeaning + "\n=" + word.getWord_explain());
-                    dictionaryManagement.exportToFile(myDictionary, path);
-                    showSuccessAlert();
-                }
+                insertMeaning(word);
             } else if (buttonType.equals(CANCEL)) {
                 alerts.showAlertInfo("Information", "Thay đổi không được công nhận.");
             }
+        });
+    }
+
+    private void replaceWord(Word word) {
+        myDictionary.Words.removeIf(w -> w.equals(word));
+        myDictionary.Words.add(word);
+        dictionaryManagement.exportToFile(myDictionary, path);
+        showSuccessAlert();
+    }
+
+    private void insertMeaning(Word word) {
+        Word existingWord = myDictionary.Words.stream()
+                .filter(w -> w.equals(word))
+                .findFirst()
+                .orElse(null);
+
+        if (existingWord != null) {
+            String oldMeaning = existingWord.getWord_explain();
+            existingWord.setWord_explain(oldMeaning + "\n=" + word.getWord_explain());
+            dictionaryManagement.exportToFile(myDictionary, path);
+            showSuccessAlert();
         }
     }
 

@@ -87,23 +87,6 @@ public class DictionaryManagement {
         return list;
     }
 
-    public HashSet<Word> searchWords(HashSet<Word> myDictionary, Trie trie, String prefix) {
-        HashSet<Word> result = new HashSet<>();
-
-        List<String> results = trie.autoComplete(prefix);
-        if (results != null) {
-            for (String resultWord : results) {
-                for (Word word : myDictionary) {
-                    if (word.getWord_target().equalsIgnoreCase(resultWord)) {
-                        result.add(word);
-                        break;
-                    }
-                }
-            }
-        }
-        return result;
-    }
-
     public int searchWord(HashSet<Word> myDictionary, String keyword) {
         try {
             int index = 0;
