@@ -68,7 +68,7 @@
                 </Label>
             </children>
         </HBox>
-        <TextField fx:id="guessInput" layoutX="517.0" layoutY="130.0" onKeyPressed="#handleOnEnterPress" prefHeight="38.0" prefWidth="176.0" promptText="Enter your word">
+        <TextField fx:id="guessInput" layoutX="517.0" layoutY="130.0" onKeyPressed="#handleOnEnterPress" prefHeight="38.0" prefWidth="176.0" promptText="Enter your word" styleClass="search-box" stylesheets="@../Utils/style.css">
             <font>
                 <Font size="18.0" />
             </font>
@@ -247,11 +247,11 @@
                 </Label>
             </children>
         </HBox>
-        <Label fx:id="logger" layoutX="477.0" layoutY="193.0" prefHeight="174.0" prefWidth="256.0" textAlignment="CENTER" wrapText="true">
+        <Label fx:id="logger" layoutX="477.0" layoutY="193.0" prefHeight="174.0" prefWidth="256.0" textFill="#100172" wrapText="true">
             <font>
                 <Font size="24.0" />
             </font>
         </Label>
-        <Button fx:id="reset" layoutX="550.0" layoutY="425.0" mnemonicParsing="false" onMouseClicked="#handleClickReset" prefHeight="50.0" prefWidth="110.0" text="New Game" />
+        <Button fx:id="reset" layoutX="550.0" layoutY="425.0" mnemonicParsing="false" onMouseClicked="#handleClickReset" prefHeight="39.0" prefWidth="117.0" styleClass="trans-button" stylesheets="@../Utils/style.css" text="New Game" />
     </children>
 </AnchorPane>

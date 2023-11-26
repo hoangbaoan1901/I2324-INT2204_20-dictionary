@@ -56,7 +56,7 @@
                         </Pane>
                         <Pane layoutX="7.0" layoutY="48.0" prefHeight="345.0" prefWidth="490.0" styleClass="definition-wrapper" stylesheets="@../Utils/style.css">
                             <children>
-                                <TextArea fx:id="meaningArea" layoutX="4.0" layoutY="58.0" prefHeight="226.0" prefWidth="483.0" styleClass="meaningArea-field" text="Giải thích&#10;" wrapText="true" />
+                                <TextArea fx:id="meaningArea" layoutX="4.0" layoutY="58.0" prefHeight="233.0" prefWidth="483.0" styleClass="meaningArea-field" text="Giải thích&#10;" wrapText="true" />
                                 <Pane layoutX="3.0" layoutY="52.0" opacity="0.74" prefHeight="2.0" prefWidth="483.0" styleClass="meaningArea-menu" />
                                 <Pane fx:id="explanationHeaderPane" layoutX="1.0" layoutY="6.0" prefHeight="45.0" prefWidth="488.0">
                                     <children>
