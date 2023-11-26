@@ -1,5 +1,5 @@
 # I2324-INT2204_20-dictionary
-# Foobar
+# Introduction
 
 This is a dictionary application made by Nguyen Duc Huy, Hoang Bao An and Nguyen Anh Duc
 
